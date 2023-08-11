@@ -1,0 +1,25 @@
+/**create list clothing_items
+1Skirts (4) blue s  $5
+2Leggings (5) pink m  $25
+3Bra (6) black  l  $12
+4Shirts (8)  brown xl $7
+5Sweaters (10) white xxl $18
+**/
+-- create  clothing store database
+
+CREATE TABLE clothing_items (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, color TEXT, size TEXT, price INTEGER);
+
+INSERT INTO clothing_items VALUES (1,"Skirts",4,"blue","s",5);
+INSERT INTO clothing_items VALUES  (2,"Leggins",5,"pink","m",25);
+INSERT INTO clothing_items VALUES (3,"Bra",6,"black","l",25);
+INSERT INTO clothing_items VALUES (4,"Shirts",8,"brown","xl",7);
+INSERT INTO  clothing_items VALUES (5,"Sweaters",10,"white","xxl",18);
+
+-- create store database
+SELECT * FROM clothing_items;
+
+-- display the database ordered by price 
+SELECT * FROM clothing_items ORDER BY price;
+
+-- display the sum of the items
+SELECT sum(price) FROM clothing_items;
