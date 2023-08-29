@@ -1,0 +1,47 @@
+CREATE TABLE artists (id INTEGER PRIMARY KEY AUTOINCREMENT,
+stage_name TEXT,
+age INTEGER);
+
+INSERT INTO artists (stage_name,age) VALUES ("Bad Bunny", "29");
+INSERT INTO artists (stage_name,age) VALUES ("Karol G","32");
+INSERT INTO artists (stage_name, age) VALUES ("Adele","35");
+INSERT INTO artists (stage_name, age) VALUES ("Justin Bieber", "29");
+INSERT INTO artists (stage_name, age) VALUES ("Rihana", "35");
+
+
+CREATE TABLE hobbies (id INTEGER PRIMARY KEY AUTOINCREMENT,
+artist_id INTEGER,
+hobby TEXT); 
+
+INSERT INTO hobbies (artist_id,hobby) VALUES (1, "horse riding");
+INSERT INTO hobbies (artist_id,hobby) VALUES (1, "golfing");
+INSERT INTO hobbies (artist_id,hobby) VALUES (2,"riding mototrcycles");
+INSERT INTO hobbies (artist_id,hobby) VALUES (2, "yoga");
+INSERT INTO hobbies (artist_id,hobby) VALUES (3, "cooking");
+INSERT INTO hobbies (artist_id,hobby) VALUES (3, "painting");
+INSERT INTO hobbies (artist_id,hobby) VALUES (4, "skating" );
+INSERT INTO hobbies (artist_id,hobby) VALUES (4,"basketball");
+INSERT INTO hobbies (artist_id,hobby) VALUES (5, "makeup");
+INSERT INTO hobbies (artist_id,hobby) VALUES (5, "desinging clothes");
+
+
+CREATE TABLE nationality (id INTEGER PRIMARY KEY AUTOINCREMENT,
+artist_id INTEGER, country TEXT);
+
+INSERT INTO nationality (artist_id,country) VALUES (1, "Puerto Rico");
+INSERT INTO nationality (artist_id,country) VALUES (2, "Columbia");
+INSERT INTO nationality (artist_id,country) VALUES (3, "UK");
+INSERT INTO nationality (artist_id,country) VALUES (4,"Canada");
+INSERT INTO nationality (artist_id,country) VALUES (5, "Barbados");
+
+/*What is the nationality of the artists?*/
+
+SELECT stage_name, country FROM artists
+JOIN nationality
+ON artists.id = nationality.artist_id;
+
+/* Display a table showing artists name and their hobbies*/
+
+SELECT stage_name, hobby FROM artists
+JOIN hobbies
+ON artists.id = hobbies.artist_id;
