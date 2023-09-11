@@ -233,13 +233,17 @@ FROM countries;
 --What country has the largest population? How big is the population?
 
 SELECT name, MAX (population) 
-FROM countries;
+FROM countries
+GROUP BY name, population
+ORDER BY population desc LIMIT 1;
 
 
 --What country has the smallest population? How small is the population?
 
 SELECT name, MIN (population) 
-FROM countries;
+FROM countries
+GROUP BY name, population
+ORDER BY population asc LIMIT 1;
 
 
 --Which countries have an average population size that is at least 1 billion?
