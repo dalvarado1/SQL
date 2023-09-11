@@ -220,28 +220,51 @@ INSERT INTO countries(name,population,percent_one_year_change,population_change,
 INSERT INTO countries(name,population,percent_one_year_change,population_change,density_per_sq_km,area_sq_km,net_migrants,fertility_rate,median_age,percent_of_world_pop) VALUES ('Antigua and Barbuda',97929,0.84,811,223,440,0,2.00,34.00,0);
 
 --What is the sum of the populations listed in dataset? 
-SELECT SUM (population) FROM countries;
+
+SELECT SUM (population) 
+FROM countries;
 
 --What is the average population size among countries listed in the dataset?
-SELECT AVG (population) FROM countries;
+
+SELECT AVG (population) 
+FROM countries;
+
 
 --What country has the largest population? How big is the population?
-SELECT name, MAX (population) FROM countries;
+
+SELECT name, MAX (population) 
+FROM countries;
+
 
 --What country has the smallest population? How small is the population?
-SELECT name, MIN (population) FROM countries;
+
+SELECT name, MIN (population) 
+FROM countries;
+
 
 --Which countries have an average population size that is at least 1 billion?
-SELECT name, AVG(population) AS avg_pop FROM countries GROUP BY name HAVING avg_pop>= 1000000000;
+
+SELECT name, AVG(population) AS avg_pop 
+FROM countries 
+GROUP BY name 
+HAVING avg_pop>= 1000000000;
+
 
 -- Categorize each country's fertility rate as "low", "high", or "at replacement level".
+
 SELECT name,fertility_rate,
 CASE
     WHEN fertility_rate <2 THEN "low fertility rate"
     WHEN fertility_rate >= 5 THEN "high  fertility rate"
-    Else  "replacement level fertility"
+    ELSE  "replacement level fertility"
     END as "fertility_category"
     FROM countries;
 
+
 --What is the name and population size of countries where the median age is greater than 20 and fertility rate is at replacement level?
-SELECT name, population FROM countries WHERE median_age>20 AND fertility_rate>=2 AND fertility_rate<5;
+
+SELECT name, population 
+FROM countries 
+WHERE median_age>20 
+AND fertility_rate>=2 
+AND fertility_rate<5;
