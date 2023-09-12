@@ -1,3 +1,5 @@
+# In this project I created my own table of artist, then made more tables with their characteristics, and joined them to display traits of the artist.
+
 CREATE TABLE artists (id INTEGER PRIMARY KEY AUTOINCREMENT,
 stage_name TEXT,
 age INTEGER);
