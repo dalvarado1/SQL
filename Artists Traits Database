@@ -38,12 +38,14 @@ INSERT INTO nationality (artist_id,country) VALUES (5, "Barbados");
 
 /*What is the nationality of the artists?*/
 
-SELECT stage_name, country FROM artists
+SELECT stage_name, country 
+FROM artists
 JOIN nationality
 ON artists.id = nationality.artist_id;
 
 /* Display a table showing artists name and their hobbies*/
 
-SELECT stage_name, hobby FROM artists
+SELECT stage_name, hobby 
+FROM artists
 JOIN hobbies
 ON artists.id = hobbies.artist_id;
