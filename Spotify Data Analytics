@@ -26,11 +26,10 @@ time_signature integer NOT NULL )
 
 # I explored the data using the following SQL:
 
-
 # Started off by taking a look at our data.
 SELECT  * FROM BIT_DB.Spotifydata
 
-
+#  Then, I deciphered a couple analytics about the Spotify data by answering my own questions...
 
 #1. Which artist have more than 1 song in Spotify's top 50 and how many times were they listed?
 
@@ -54,3 +53,11 @@ LIMIT 1
 SELECT artist_name,track_name,avg(popularity),avg(danceability)
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name, track_name
+
+
+#4. Who are the top 10 artist based on popularity?
+
+SELECT artist_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity desc
+LIMIT 10
