@@ -29,6 +29,7 @@ time_signature integer NOT NULL )
 # Started off by taking a look at our data.
 SELECT  * FROM BIT_DB.Spotifydata
 
+
 #  Then, I deciphered a couple analytics about the Spotify data by answering my own questions...
 
 #1. Which artist have more than 1 song in Spotify's top 50 and how many times were they listed?
@@ -61,3 +62,21 @@ SELECT artist_name, popularity
 FROM BIT_DB.Spotifydata
 ORDER BY popularity desc
 LIMIT 10
+
+
+#5. Calculate the average popularity for the artists in the Spotify data table. 
+Then, for every artist with an average popularity of 90 or above, show their 
+name, their average popularity, and label them as a “Top Star”.
+
+WITH popularity_average_CTE AS(
+SELECT artist_name,
+AVG(popularity) as avg_pop 
+FROM Spotifydata   
+GROUP BY artist_name)
+
+SELECT  artist_name,
+        avg_pop, 
+        'Top Star' AS tag
+FROM popularity_average_CTE
+WHERE avg_pop>=90;
+
