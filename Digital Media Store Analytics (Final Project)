@@ -1,0 +1,124 @@
+#For this project I used SQL to analyze the dataset chinook which stores many data tables about artists, albums, media tracks, invoices, and customers.
+
+
+
+#1. What distinct countries are the customers from?
+
+SELECT distinct country FROM customers;
+
+
+
+#2. Show Customers who are NOT in Canada.
+
+SELECT FirstName,LastName,customerid,country
+FROM customers
+where country != 'Canada'
+
+
+
+#3.  Show only the Customers from United Kingdom.
+
+SELECT FirstName,LastName,customerid,country
+FROM customers
+where country = 'United Kingdom'
+
+
+
+#4.Find the Invoices of customers who are from United Kingdom. 
+
+SELECT InvoiceID,InvoiceDate, c.FirstName, c.Lastname, BillingCountry
+FROM invoices i
+LEFT JOIN customers c
+on c.customerid = i.customerid
+WHERE BillingCountry = 'United Kingdom'
+
+
+
+#5. Show the Employees who work in the IT department and their title.
+
+SELECT FirstName,LastName,Title
+FROM employees
+WHERE Title LIKE '%IT%'
+
+
+
+#6. Provide a query that shows the invoices associated with each sales agent. 
+
+SELECT  InvoiceID, e.FirstName, e.LastName, e.Title 
+FROM invoices i
+JOIN customers c ON i.customerid = c.customerid
+JOIN employees e ON c.supportrepid = e.employeeid
+WHERE Title LIKE "%Sales% %Agent%" 
+
+
+
+#7. Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers.
+
+SELECT Total,BillingCountry, c.FirstName as CustName, C.lastname  as CustLastname, e.firstname as AgentName, e.lastname as  AgentLastname, e.Title
+FROM invoices i 
+JOIN Customers c ON i.customerid = c.customerid
+JOIN employees e ON c.supportrepid = e.employeeid
+
+
+
+#8. How many Invoices were there in 2012?
+
+SELECT COUNT(*) as InvoiceTotal
+FROM invoices
+WHERE InvoiceDate LIKE '2012%'
+
+
+
+#9. What was the sales average in 2012?
+
+SELECT  ROUND(AVG(Total),2) as AvgSales
+FROM invoices
+WHERE  InvoiceDate LIKE '2012%'
+
+
+
+#10. Which sales agent made the most dollars in sales in 2012?
+
+SELECT ROUND(SUM(total),2) as TotalSales, e.firstname,e.lastname FROM invoices i
+JOIN customers c ON i.customerid = c.customerid
+JOIN employees e ON c.supportrepid = e.employeeid
+WHERE InvoiceDate LIKE "2012%"
+GROUP BY employeeid 
+ORDER by TotalSales desc
+LIMIT 1
+
+
+
+#11. Write a query that includes the purchased track name, customer name, and country customer resides in.
+
+SELECT  t.name,c.FirstName,c.lastname,i.BillingCountry
+FROM tracks t
+JOIN invoice_items ii ON t.trackid = ii.trackid
+JOIN invoices i ON ii.invoiceid = i.invoiceid
+JOIN customers c ON i.customerid = c.customerid
+
+
+
+#12. Provide a query that shows all the Tracks, and include the Album name, Media Type, and Genre.
+
+SELECT  t.name as TrackName, al.title as AlbumName, mt.name as MediaType, g.name as Genre
+FROM tracks t
+JOIN albums al ON t.albumid = al.albumid
+JOIN media_types mt on t.mediatypeid = mt.mediatypeid
+JOIN genres g ON t.genreid = g.genreid
+
+
+
+13. Show the number of invoices per country
+
+ SELECT i.BillingCountry as "Country", COUNT(i.InvoiceId) as "Amount of invoices"
+ FROM Invoices i
+ GROUP BY i.BillingCountry;
+ 
+
+
+#14. What were the total sales per country?
+
+SELECT BillingCountry as Country, ROUND(sum(total),2) as TotalSales
+FROM invoices
+GROUP BY BillingCountry
