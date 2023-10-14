@@ -26,6 +26,6 @@ SELECT * FROM clothing_items;
 SELECT * FROM clothing_items ORDER BY price;
 
 
--- display the sum of the items
+-- display the price of the highest costing item
 
-SELECT sum(price) FROM clothing_items;
+SELECT max(price) FROM clothing_items;
